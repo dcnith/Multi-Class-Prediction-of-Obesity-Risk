@@ -336,8 +336,37 @@ f1=f1_score(Y_train, Y_train_pred, average='weighted')
 f1
 
 
+# =============================================================================
+# ################ Light GBM
+# =============================================================================
 
+import lightgbm as lgb
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
 
+model = lgb.LGBMClassifier(learning_rate=0.09,max_depth=-5,random_state=42)
+
+scores=cross_val_score(model, X_train_pca, Y_train, cv=skfold)
+scores
+print(np.mean(scores))
+print("Accuracy: %.3f%% (%.3f%%)" % (scores.mean()*100.0, scores.std()*100.0))
+
+Y_train_pred = cross_val_predict(model, X_train_pca,Y_train, cv=skfold)
+
+f1=f1_score(Y_train, Y_train_pred, average='weighted')
+f1
+
+########### Feature Importance Plot
+
+model.fit(X_train_pca, Y_train)
+lgb.plot_importance(model)
+
+lgb.plot_metric(model)
+
+import graphviz
+lgb.plot_tree(model,figsize=(30,40))
 
 
 
