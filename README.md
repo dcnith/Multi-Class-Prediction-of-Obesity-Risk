@@ -10,4 +10,4 @@ Goal: The goal of this competition is to use various factors to predict obesity 
 **train.csv**
 id, Gender, Age, Height, Weight, family_history_with_overweight, FAVC, FCVC, NCP, CAEC, SMOKE, CH2O, SCC, FAF, TUE, CALC, MTRANS, NObeyesdad
 
-Data points: 
+Data points: 20158
